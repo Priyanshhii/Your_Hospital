@@ -1,0 +1,24 @@
+{
+  "intents": [
+    {
+      "tag": "Cold",
+      "patterns": [
+        "fever (100° F),",
+        "headache,",
+        "more intense pain and fatigue, and",
+        "more severe, often dry cough."
+      ]
+    },
+    {
+      "tag": "Allergies",
+      "patterns": [
+        "Eye irritation",
+        "Runny nose",
+        "Stuffy nose",
+        "Puffy, watery eyes",
+        "Sneezing",
+        "Inflamed, itchy nose and throat"
+      ]
+    }
+  ]
+}

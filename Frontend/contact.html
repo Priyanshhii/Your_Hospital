@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Contact us</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="contact.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="logo.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header class="text-gray-500 body-font">
+      <div
+        class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
+      >
+        <a
+          class="flex title-font font-medium items-center text-gray-400 mb-4 md:mb-0"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 0 V30 0 M0 12 H30 "></path>
+          </svg>
+          <span class="ml-3 text-xl text-black">Your Hospital</span>
+        </a>
+        <nav
+          class="md:ml-auto flex flex-wrap items-center text-base justify-center"
+        >
+          <a class="mr-5 hover:text-black cursor-pointer" href="index.html">
+            Home
+          </a>
+          <a class="mr-5 hover:text-black cursor-pointer" href="about.html">
+            About
+          </a>
+          <a class="mr-5 hover:text-black cursor-pointer" href="service.html">
+            Services
+          </a>
+          <a class="mr-5 hover:text-black cursor-pointer" href="login.html">
+            Log in/Register
+          </a>
+        </nav>
+      </div>
+    </header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+      <div class="content">
+        <div class="left-side">
+          <div class="address details">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="topic">Address</div>
+            <div class="text-one">Surat</div>
+            <div class="text-two">Gujarat</div>
+          </div>
+          <div class="phone details">
+            <i class="fas fa-phone-alt"></i>
+            <div class="topic">Phone</div>
+            <div class="text-one">+9190 9090 9090</div>
+          </div>
+          <div class="email details">
+            <i class="fas fa-envelope"></i>
+            <div class="topic">Email</div>
+            <div class="text-one">yourhospital@gmail.com</div>
+          </div>
+        </div>
+        <div class="right-side">
+          <div class="topic-text">Send us a message</div>
+          <p>
+            If you have any work from us or any types of quries related to our
+            website, you can send us message from here. It's our pleasure to
+            help you.
+          </p>
+          <form action="#">
+            <div class="input-box">
+              <input id="name" type="text" placeholder="Enter your name" />
+            </div>
+            <div class="input-box">
+              <input id="email" type="text" placeholder="Enter your email" />
+            </div>
+            <div class="input-box">
+              <textarea
+                id="response"
+                type="text"
+                placeholder="Enter your message"
+                row="6"
+              ></textarea>
+            </div>
+            <div class="button">
+              <input id="send" type="button" value="Send Now" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      const btn = document.getElementById('send')
+      btn.onclick = () => {
+        console.log(1)
+        const request = new XMLHttpRequest()
+        var response = document.getElementById('response')
+        var email = document.getElementById('email')
+        var name = document.getElementById('name')
+        var url = `https://your-hospital-api.herokuapp.com/response?email=${email.value}&name=${name.value}&message=${response.value}`
+        request.open('GET', url)
+        request.send()
+      }
+    </script>
+  </body>
+</html>

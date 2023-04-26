@@ -1,0 +1,1 @@
+dic = {"sweating": 1}

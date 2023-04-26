@@ -1,0 +1,7 @@
+flask
+gunicorn
+firebase_admin
+cryptography
+numpy
+nltk
+sklearn

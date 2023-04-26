@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Login/Register</title>
+    <link rel="stylesheet" href="login.css" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="logo.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header class="text-gray-400 body-font">
+      <div
+        class="container mx-auto flex flex-wrap pt-5 flex-col md:flex-row items-center"
+      >
+        <a
+          class="flex title-font font-medium items-center text-gray-400 mb-4 md:mb-0"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 0 V30 0 M0 12 H30 "></path>
+          </svg>
+          <span class="ml-3 text-xl text-black">Your Hospital</span>
+        </a>
+      </div>
+    </header>
+    <br />
+    <header class="text-gray-500 body-font">
+      <div
+        class="container mx-auto flex flex-wrap flex-col md:flex-row items-center"
+      >
+        <nav
+          class="md:ml-auto flex flex-wrap items-center text-base justify-center"
+        >
+          <a class="mr-5 hover:text-black cursor-pointer" href="index.html">
+            Home
+          </a>
+          <a class="mr-5 hover:text-black cursor-pointer" href="about.html">
+            About
+          </a>
+          <a class="mr-5 hover:text-black cursor-pointer" href="service.html">
+            Services
+          </a>
+          <a class="mr-5 hover:text-black cursor-pointer" href="contact.html">
+            Contact Us
+          </a>
+        </nav>
+      </div>
+    </header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="wrapper">
+      <div class="title-text">
+        <div class="title login">
+          Login Form
+        </div>
+        <div class="title signup">
+          Register Form
+        </div>
+      </div>
+      <div class="form-container">
+        <div class="slide-controls">
+          <input type="radio" name="slide" id="login" checked />
+          <input type="radio" name="slide" id="signup" />
+          <label for="login" class="slide login">Login</label>
+          <label for="signup" class="slide signup">Register</label>
+          <div class="slider-tab"></div>
+        </div>
+        <div class="form-inner">
+          <form action="#" class="login">
+            <div class="field">
+              <input
+                id="Login_Email"
+                type="text"
+                placeholder="Email Address"
+                required
+              />
+            </div>
+            <div class="field">
+              <input
+                id="Login_Pass"
+                type="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <div class="pass-link">
+              <a href="#">Forgot password?</a>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input id="Login_Button" type="submit" value="Login" />
+            </div>
+            <div class="signup-link">
+              Not a member?
+              <a href="">Register now</a>
+            </div>
+          </form>
+          <form action="#" class="signup">
+            <div class="field">
+              <input
+                id="Register_Name"
+                type="text"
+                placeholder="Name"
+                required
+              />
+            </div>
+            <div class="field">
+              <input
+                id="Register_Gender"
+                type="text"
+                placeholder="Gender"
+                required
+              />
+            </div>
+            <div class="field">
+              <input
+                id="Register_Email"
+                type="text"
+                placeholder="Email Address"
+                required
+              />
+            </div>
+            <div class="field">
+              <input
+                id="Register_Pass"
+                type="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <div class="field">
+              <input
+                id="Register_Confirm_Pass"
+                type="password"
+                placeholder="Confirm password"
+                required
+              />
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input id="Register_Button" type="submit" value="Register" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      const loginText = document.querySelector('.title-text .login')
+      const loginForm = document.querySelector('form.login')
+      const loginBtn = document.querySelector('label.login')
+      const signupBtn = document.querySelector('label.signup')
+      const signupLink = document.querySelector('form .signup-link a')
+      signupBtn.onclick = () => {
+        loginForm.style.marginLeft = '-50%'
+        loginText.style.marginLeft = '-50%'
+      }
+      loginBtn.onclick = () => {
+        loginForm.style.marginLeft = '0%'
+        loginText.style.marginLeft = '0%'
+        var email = document.getElementById('Login_Email')
+        document.getElementsByClassName('temp').innerHTML = 'hello'
+      }
+      signupLink.onclick = () => {
+        signupBtn.click()
+        return false
+      }
+
+      const login_btn = document.getElementById('Login_Button')
+      const register_btn = document.getElementById('Register_Button')
+
+      register_btn.onclick = () => {
+        const name = document.getElementById('Register_Name')
+        const email = document.getElementById('Register_Email')
+        const pass = document.getElementById('Register_Pass')
+        const confirm_pass = document.getElementById('Register_Confirm_Pass')
+        const gender = document.getElementById('Register_Gender')
+
+        if (pass.value == confirm_pass.value) {
+          var request = new XMLHttpRequest()
+          var url = `https://your-hospital-api.herokuapp.com/register?email=${email.value}&username=${name.value}&password=${pass.value}&gender=${gender}`
+          request.open('GET', url)
+          request.send()
+          request.onload = () => {
+            if (request.response == 'user found') {
+              email.value = ''
+            } else {
+              window.location.replace('index.html')
+            }
+          }
+        }
+      }
+
+      login_btn.onclick = () => {
+        const email = document.getElementById('Login_Email')
+        const pass = document.getElementById('Login_Pass')
+        var url = `https://your-hospital-api.herokuapp.com/login?email=${email.value}&password=${pass.value}`
+        var request = new XMLHttpRequest()
+        console.log(url)
+        request.open('GET', url)
+        request.send()
+        request.onload = () => {
+          if (!request.response) {
+            email.value = ''
+            pass.value = ''
+          } else {
+            window.location.replace('index.html')
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

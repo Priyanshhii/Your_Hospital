@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="service.css">
+	<link rel="shortcut icon" href="logo.jpg" />
+    <title>Your Hospital</title>
+</head>
+<body>
+    <!-- header -->
+    <header class="text-grey-400 body-font">
+		<div class="container mx-auto flex flex-wrap pt-5 flex-col md:flex-row items-center">
+		  <a class="flex title-font font-medium items-center text-gray-400 mb-4 md:mb-0">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+				<path d="M12 0 V30 0 M0 12 H30 "></path>
+			</svg>
+			<span class="ml-3 text-xl text-black">Your Hospital</span>
+		  </a>
+		</div>  
+	</header><br>
+	<header class="text-white body-font"> 
+		<div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
+		   <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+			  <a class="mr-5 hover:text-black cursor-pointer" href="index.html">Home</a>
+			  <a class="mr-5 hover:text-black cursor-pointer" href="about.html">About</a>
+			  <a class="mr-5 hover:text-black cursor-pointer" href="login.html">Log in/Register</a>
+			  <a class="mr-5 hover:text-black cursor-pointer" href="contact.html">Contact Us</a>
+		   </nav>
+		</div>  
+	</header><br><br>
+    <div class="wrapper">
+        <div class="title-text">
+           <div class="title login">
+              	We are here for your help!
+           </div>
+        </div>
+    </div>
+    <div class="form-inner">
+        <form action="#" class="Services">
+            <div class="field">
+                <input id="gender" type="text" placeholder="Gender" required>
+            </div>
+            <div class="field">
+                <input id="age" type="text" placeholder="Age" required>
+            </div>
+            <div class="field">
+                <input id="symptoms" type="text" placeholder="Symptoms" required>
+            </div>
+			<div class="field">
+                <p id="output"></p>
+            </div>
+            <div class="field btn">
+                <div class="btn-layer"></div>
+            		<input id="submit" type="submit" value="Submit">
+                </div>
+			</div>
+        </form>
+		<script>
+			const btn = document.getElementById("submit")
+			const symptoms = document.getElementById("symptoms")
+			const age = document.getElementById("age")
+			const gender = document.getElementById("Gender")
+			btn.onclick = ()=>{
+				document.getElementById("output").innerText = '';
+				var request = new XMLHttpRequest();
+				url = `https://localhost:8080/predict?gender=${gender}&age=${age}&symptoms=${symptoms}`
+				request.open("GET",url)
+				request.send()
+				console.log(1)
+				request.onload = ()=>{
+					document.getElementById("output").innerText = request.responseText;
+				}
+			}
+		</script>
+	</div>
+</body>
+</html>
